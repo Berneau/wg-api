@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=DEVELOPMENT nodemon",
-    "test": "clear && NODE_ENV=TESTING mocha --exit --timeout 10000",
+    "prod": "NODE_ENV=PRODUCITON node index.js",
+    "test": "NODE_ENV=TESTING mocha --exit --timeout 10000",
     "doc": "apidoc -i routes/ -o apidoc"
   },
   "author": "bernhard.steger@gmail.com",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Berneau/wg-project.git"
+    "url": "git@github.com:Berneau/wg-api.git"
   },
   "dependencies": {
     "bcrypt": "^2.0.0",

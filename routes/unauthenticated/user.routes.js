@@ -1,8 +1,8 @@
 let bcrypt = require('bcrypt');
-let saltRounds = require('../../config').saltRounds;
 let userIsValid = require('../../helpers').userIsValid;
 let stripUserObject = require('../../helpers').stripUserObject;
 let User = require('../../models/user.model');
+let saltRounds = 10;
 
 
 module.exports = (router) => {

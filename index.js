@@ -10,7 +10,14 @@ let app = express();
 
 // load config
 let config;
-if (process.env.NODE_ENV === 'DEVELOPMENT') config = require('./config');
+if (process.env.NODE_ENV === 'PRODUCITON') {
+  config = {
+    database: process.env.database,
+    secret: process.env.secret,
+    logging: process.env.logging
+  }
+}
+else if (process.env.NODE_ENV === 'DEVELOPMENT') config = require('./config');
 else config = require('./config.test');
 
 // set environment settings

@@ -1,0 +1,44 @@
+{
+  "name": "wg-api",
+  "version": "1.0.0",
+  "description": "Api for managing a WG",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=DEVELOPMENT nodemon",
+    "test": "clear && NODE_ENV=TESTING mocha --exit --timeout 10000",
+    "doc": "apidoc -i routes/ -o apidoc"
+  },
+  "author": "bernhard.steger@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Berneau/wg-project.git"
+  },
+  "dependencies": {
+    "bcrypt": "^2.0.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-sanitize-escape": "^1.1.0",
+    "express-sanitizer": "^1.0.4",
+    "helmet": "^3.12.0",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.0.15"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.1.0"
+  },
+  "apidoc": {
+    "title": "WG API",
+    "header": {
+      "title": "Intro",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Issues",
+      "filename": "footer.md"
+    }
+  }
+}

@@ -21,13 +21,13 @@ else config = require('./config.test');
 
 // set environment settings
 let database = config.database;
-let port = 3000;
+let port = process.env.PORT || 3000;
 
 // set up mongodb
 mongoose.promise = global.Promise;
 mongoose.connect(database, (err) => {
   if (err) {
-    console.log('[Error] Cannot connect to Database.');
+    console.log('[Error] Cannot connect to Database.', err);
     process.exit(1);
   }
 });

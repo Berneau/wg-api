@@ -4,7 +4,7 @@
   "description": "Api for managing a WG",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=PRODUCITON node index.js",
+    "start": "node index.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon",
     "test": "NODE_ENV=TESTING mocha --exit --timeout 10000",
     "doc": "apidoc -i routes/ -o apidoc"

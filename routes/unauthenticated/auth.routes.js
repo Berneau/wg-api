@@ -1,8 +1,15 @@
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcrypt');
-let secret = require('../../config').secret;
 let stripUserObject = require('../../helpers').stripUserObject
 let User = require('../../models/user.model');
+let secret;
+
+// set secret
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  secret = process.env.secret
+} else {
+  secret = require('../../config').secret;
+}
 
 module.exports = (router) => {
 

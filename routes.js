@@ -1,7 +1,14 @@
 let express = require('express');
 let jwt = require('jsonwebtoken');
-let secret = require('./config').secret;
 let router = express.Router();
+let secret;
+
+// set secret
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  secret = process.env.secret
+} else {
+  secret = require('./config').secret;
+}
 
 
 // unauthenticated routes

@@ -10,11 +10,9 @@ let app = express();
 
 // load config
 let config;
-console.log('env', process.env);
 if (process.env.NODE_ENV === 'PRODUCTION') {
   config = {
     database: process.env.database,
-    secret: process.env.secret,
     logging: process.env.logging
   }
 }

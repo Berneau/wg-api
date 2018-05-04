@@ -6,13 +6,11 @@ module.exports = {
   },
   stripUserObject: (user) => {
     user.password = undefined;
-    user.isAdmin = undefined;
     return user;
   },
   stripUserArray: (arr) => {
     for (var i = 0; i < arr.length; i++) {
       arr[i].password = undefined;
-      arr[i].isAdmin = undefined;
     }
     return arr;
   },

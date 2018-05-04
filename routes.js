@@ -47,22 +47,21 @@ require('./routes/authenticated/operations.routes')(router);
 
 
 // admin check
-router.use((req, res, next) => {
-
-  let token = req.headers['authorization'];
-  
-  jwt.verify(token, secret, (err, decoded) => {
-    
-    if (!decoded.isAdmin) return res.status(403).json({
-      ok: false,
-      message: 'Admin rights required'
-    })
-  
-    next();
-  })
-})
+// router.use((req, res, next) => {
+// 
+//   let token = req.headers['authorization'];
+// 
+//   jwt.verify(token, secret, (err, decoded) => {
+// 
+//     if (!decoded.isAdmin) return res.status(403).json({
+//       ok: false,
+//       message: 'Admin rights required'
+//     })
+// 
+//     next();
+//   })
+// })
 
 // admin routes
-require('./routes/admin/user.routes')(router);
 
 module.exports = router;

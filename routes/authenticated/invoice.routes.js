@@ -186,9 +186,7 @@ module.exports = (router) => {
         message: 'Invoice not found'
       })
       
-      console.log(invoice);
       invoice.deleted = req.query.shouldDelete;
-      console.log(invoice);
       
       invoice.save((err) => {
         

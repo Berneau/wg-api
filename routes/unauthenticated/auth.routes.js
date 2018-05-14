@@ -56,17 +56,22 @@ module.exports = (router) => {
           ok: false,
           message: 'Authentication failed'
         })
-
+        
         let token = jwt.sign(
           { isAdmin: user.isAdmin },
           secret,
           { expiresIn: '24h' }
         )
+        
+        let expiresAt = Date.now() + (1000 * 3600 * 24)
 
         // return token and user
         res.status(200).json({
           ok: true,
-          token: token,
+          jwt: {
+            token,
+            expiresAt
+          },
           user: stripUserObject(user)
         })
       })

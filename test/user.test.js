@@ -27,7 +27,7 @@ describe('User', () => {
         .post('/api/auth')
         .send(user)
         .end((err, res) => {
-          token = res.body.token
+          token = res.body.jwt.token;
           done()
         })
       })

@@ -42,7 +42,9 @@ router.use((req, res, next) => {
 
 // authenticated routes
 require('./routes/authenticated/user.routes')(router);
+require('./routes/authenticated/task.routes')(router);
 require('./routes/authenticated/invoice.routes')(router);
+require('./routes/authenticated/category.routes')(router);
 require('./routes/authenticated/operations.routes')(router);
 
 

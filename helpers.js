@@ -44,5 +44,30 @@ module.exports = {
     month.createdAt = data.createdAt;
     month.users = data.users;
     return month;
+  },
+  taskIsValid: (task) => {
+    if (!task.reporterId ||
+        !task.title) return false;
+    else return true;
+  },
+  taskFactory: (task, data) => {
+    task.reporterId = data.reporterId;
+    task.assigneeId = data.assigneeId;
+    task.title = data.title;
+    task.note = data.note;
+    task.dueTo = data.dueTo;
+    task.categoryId = data.categoryId;
+    return task;
+  },
+  categoryIsValid: (category) => {
+    if (!category.title) return false;
+    else return true;
+  },
+  categoryFactory: (category, data) => {
+    category.title = data.title;
+    category.color = data.color;
+    category.icon = data.icon;
+    category.note = data.note;
+    return category;
   }
 }

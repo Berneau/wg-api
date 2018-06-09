@@ -2,7 +2,7 @@
 
 let mongoose = require('mongoose')
 let User = require('../models/user.model')
-let Invoice = require('../models/invoice.model')
+let Task = require('../models/task.model')
 let chai = require('chai')
 let chaiHttp = require('chai-http')
 let server = require('../index')
@@ -12,7 +12,7 @@ let userId = null;
 
 chai.use(chaiHttp)
 
-describe('Invoice', () => {
+describe('Task', () => {
 
   before((done) => {
     let user = new User({
@@ -37,84 +37,73 @@ describe('Invoice', () => {
   })
   
   after((done) => {
-    Invoice.remove({}, (err) => {
+    Task.remove({}, (err) => {
       done()
     })
   })
 
-  describe('GET invoices', () => {
+  describe('GET tasks', () => {
   
-    it('should GET all invoices', (done) => {
+    it('should GET all tasks', (done) => {
       chai.request(server)
-        .get('/api/invoices?month=0')
+        .get('/api/tasks')
         .set('authorization', token)
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property('ok').equal(true)
-          res.body.should.have.property('invoices')
-          res.body.invoices.should.be.a('array')
-          done()
-        })
-    })
-    
-    it('should THROW an error if no month is given', (done) => {
-      chai.request(server)
-        .get('/api/invoices')
-        .set('authorization', token)
-        .end((err, res) => {
-          res.should.have.status(412)
-          res.body.should.have.property('ok').equal(false)
-          res.body.should.have.property('err').equal('No month given')
+          res.body.should.have.property('tasks')
+          res.body.tasks.should.be.a('array')
           done()
         })
     })
   })
 
-  describe('GET invoice', () => {
+  describe('GET task', () => {
   
-    it('should GET a invoice by id', (done) => {
-      let invoice = new Invoice({
-        ownerId: userId,
-        sumAmount: 123
+    it('should GET a task by id', (done) => {
+      let task = new Task({
+        reporterId: userId,
+        title: 'Lorem'
       })
   
       chai.request(server)
-        .post('/api/invoices')
+        .post('/api/tasks')
         .set('authorization', token)
-        .send(invoice)
+        .send(task)
         .end((err, res) => {
-          let id = res.body.invoice._id
+          let id = res.body.task._id
           
           chai.request(server)
-            .get('/api/invoices/' + id)
+            .get('/api/tasks/' + id)
             .set('authorization', token)
-            .send(invoice)
+            .send(task)
             .end((err, res) => {
               res.should.have.status(200)
               res.body.should.have.property('ok').equal(true)
-              res.body.should.have.property('invoice')
-              res.body.invoice.should.have.property('_id').equal(id.toString())
+              res.body.should.have.property('task')
+              res.body.task.should.have.property('_id').equal(id.toString())
               done()
             })
         })
     })
   })
 
-  describe('POST invoice', () => {
+  describe('POST task', () => {
   
-    it('should create a invoice if no fields are missing', (done) => {
-      let invoice = new Invoice({
-        ownerId: userId
+    it('should create a task if no fields are missing', (done) => {
+      let task = new Task({
+        reporterId: userId,
+        title: 'Lorem'
       })
       
       chai.request(server)
-        .post('/api/invoices')
+        .post('/api/tasks')
         .set('authorization', token)
-        .send(invoice)
+        .send(task)
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property('ok').equal(true)
-          res.body.should.have.property('invoice')
+          res.body.should.have.property('task')
           done()
         })
     })

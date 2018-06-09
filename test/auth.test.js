@@ -37,7 +37,7 @@ describe('Auth', () => {
           .end((err, res) => {
             res.should.have.status(200)
             res.body.should.have.property('ok').equal(true)
-            res.body.should.have.property('token')
+            res.body.should.have.property('jwt')
             res.body.should.have.property('user')
             res.body.user.should.not.have.property('password')
             done()

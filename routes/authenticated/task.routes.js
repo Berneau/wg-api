@@ -56,7 +56,7 @@ module.exports = (router) => {
     // not a valid task object
     if (!taskIsValid(req.body)) return res.status(412).json({
       ok: false,
-      message: 'Not a valid task object'
+      err: 'Not a valid task object'
     })
 
     let task = new Task();
@@ -101,7 +101,7 @@ module.exports = (router) => {
       // no task with this id
       if (!task) return res.status(404).json({
         ok: false,
-        message: 'Task not found'
+        err: 'Task not found'
       })
 
       // return task object
@@ -141,7 +141,7 @@ module.exports = (router) => {
       // no task with this id
       if (!task) return res.status(404).json({
         ok: false,
-        message: 'Task not found'
+        err: 'Task not found'
       })
 
       task = taskFactory(req.body, task);
@@ -185,7 +185,7 @@ module.exports = (router) => {
       // no task with this id
       if (!task) return res.status(404).json({
         ok: false,
-        message: 'Task not found'
+        err: 'Task not found'
       })
 
       task.deleted = req.query.shouldDelete;

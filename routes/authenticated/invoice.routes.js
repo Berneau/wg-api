@@ -62,7 +62,7 @@ module.exports = (router) => {
     // not a valid invoice object
     if (!invoiceIsValid(req.body)) return res.status(412).json({
       ok: false,
-      message: 'Not a valid invoice object'
+      err: 'Not a valid invoice object'
     })
     
     let invoice = new Invoice();
@@ -107,7 +107,7 @@ module.exports = (router) => {
       // no invoice with this id
       if (!invoice) return res.status(404).json({
         ok: false,
-        message: 'Invoice not found'
+        err: 'Invoice not found'
       })
 
       // return invoice object
@@ -139,7 +139,7 @@ module.exports = (router) => {
       // no invoice with this id
       if (!invoice) return res.status(404).json({
         ok: false,
-        message: 'Invoice not found'
+        err: 'Invoice not found'
       })
       
       invoice = invoiceFactory(req.body, invoice);
@@ -183,7 +183,7 @@ module.exports = (router) => {
       // no invoice with this id
       if (!invoice) return res.status(404).json({
         ok: false,
-        message: 'Invoice not found'
+        err: 'Invoice not found'
       })
       
       invoice.deleted = req.query.shouldDelete;

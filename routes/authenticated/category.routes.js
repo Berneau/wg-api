@@ -53,7 +53,7 @@ module.exports = (router) => {
     // not a valid category object
     if (!categoryIsValid(req.body)) return res.status(412).json({
       ok: false,
-      message: 'Not a valid category object'
+      err: 'Not a valid category object'
     })
 
     let category = new Category();
@@ -98,7 +98,7 @@ module.exports = (router) => {
       // no category with this id
       if (!category) return res.status(404).json({
         ok: false,
-        message: 'Category not found'
+        err: 'Category not found'
       })
 
       // return category object
@@ -135,7 +135,7 @@ module.exports = (router) => {
       // no category with this id
       if (!category) return res.status(404).json({
         ok: false,
-        message: 'Category not found'
+        err: 'Category not found'
       })
 
       category = categoryFactory(req.body, category);
@@ -179,7 +179,7 @@ module.exports = (router) => {
       // no category with this id
       if (!category) return res.status(404).json({
         ok: false,
-        message: 'Category not found'
+        err: 'Category not found'
       })
 
       category.deleted = req.query.shouldDelete;

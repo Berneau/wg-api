@@ -58,7 +58,7 @@ module.exports = (router) => {
       // no user with this id
       if (!user) return res.status(404).json({
         ok: false,
-        message: 'User not found'
+        err: 'User not found'
       })
 
       // return user object
@@ -94,13 +94,13 @@ module.exports = (router) => {
       // no user with this id
       if (!user) return res.status(404).json({
         ok: false,
-        message: 'User not found'
+        err: 'User not found'
       })
 
       // not a valid user
       if (!userIsValid(req.body)) return res.status(412).json({
         ok: false,
-        message: 'Missing fields'
+        err: 'Missing fields'
       })
 
       user = userFactory(user, req.body);

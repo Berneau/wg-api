@@ -107,6 +107,23 @@ describe('Task', () => {
           done()
         })
     })
+    
+    it('should not create a task if fields are missing', (done) => {
+      let task = new Task({
+        title: 'Lorem'
+      })
+      
+      chai.request(server)
+        .post('/api/tasks')
+        .set('authorization', token)
+        .send(task)
+        .end((err, res) => {
+          res.should.have.status(412)
+          res.body.should.have.property('ok').equal(false)
+          res.body.should.have.property('err').equal('Not a valid task object')
+          done()
+        })
+    })
   })
 
 })
